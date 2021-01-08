@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,24 +22,21 @@ public class MainActivity extends AppCompatActivity {
         EditText password=findViewById(R.id.password);
         Button login = findViewById(R.id.Login);
 
-        String Id = id.getText().toString();
-        String Pw = password.getText().toString();
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Id = id.getText().toString();
+                String Pw = password.getText().toString();
 
-
-        if(Id=="" || Pw==""){
-            Toast.makeText(this,"제대로 입력해주시기 바랍니다.",Toast.LENGTH_LONG).show();
-        }
-        else if(Id!="" && Pw!=""){
-            login.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(),MenuActivity.class);
-                    intent.putExtra("username",Id);
-                    intent.putExtra("password",Pw);
+                if(Id.equals("") || Pw.equals("")){
+                    print("제대로 입력해주시기 바랍니다.");
+                }
+                else{
+                    Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
                     startActivityForResult(intent, 101);
                 }
-            });
-        }
+            }
+        });
 
     }
 
